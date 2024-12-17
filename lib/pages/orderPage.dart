@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tea_elect_finals/pages/footer.dart';
 
-import 'cartPage.dart';
+import 'homepage.dart';
 
 class OrderPage extends StatelessWidget {
   final String productName;
@@ -140,7 +140,14 @@ class OrderProduct extends StatelessWidget {
 
         Center(
           child: ElevatedButton(
-              onPressed: (){},
+              onPressed: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomePage(),
+                  ),
+                );
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xffFFAC00),
                 shape: RoundedRectangleBorder(

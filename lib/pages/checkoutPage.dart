@@ -22,7 +22,7 @@ class CheckoutPage extends StatelessWidget {
                 productName: "MIDNIGHT OIL DARK ROAST COFFEE",
                 price: "P729",
                 caption: "The best coffee in town!",
-                photo: "Roasted_coffee_beans.jpg",
+                photo: "coffee.png",
               ),
               SizedBox(height: 20),
 
@@ -84,20 +84,10 @@ class OrderProduct extends StatelessWidget {
         ),
         const SizedBox(height: 10),
 
-        Center(
-          child: Container(
-            height: 200, // Reduced height
-            width: 300, // Reduced width
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Image.asset(
-              'assets/product_img/$photo',
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
+
+        // Laman neto yung list ng items, subtotal tapos yung mode of payment pati details
+
+
         const SizedBox(height: 10),
 
 

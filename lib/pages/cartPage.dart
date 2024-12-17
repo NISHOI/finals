@@ -30,7 +30,7 @@ class CartPage extends StatelessWidget {
               CartItem( // Gamit nalang ng listview builder dito kasi di natin alam kung ilan items iaadd sa cart
                 productName: "MIDNIGHT OIL DARK ROAST COFFEE",
                 price: "P729",
-                photo: "Roasted_coffee_beans.jpg",
+                photo: "coffee.png",
               ),
               SizedBox(height: 20),
               SizedBox(height: 20),
@@ -82,22 +82,32 @@ class CartItem extends StatelessWidget {
         ),
         const SizedBox(height: 10),
 
+
+        // Laman neto yung list ng cart items
+
+
         Center(
-          child: Container(
-            height: 200, // Reduced height
-            width: 300, // Reduced width
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
+          child: ElevatedButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const CheckoutPage(),
+                ),
+              );
+            },
+            style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xffFFAC00),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2)
+                )
             ),
-            child: Image.asset(
-              'assets/product_img/$photo',
-              fit: BoxFit.cover,
+            child: const Text(
+              "PROCEED TO CHECKOUT",
+              style: TextStyle(color: Colors.black, fontFamily: 'Jaro', fontSize: 20),
             ),
           ),
-        ),
-        const SizedBox(height: 10),
-
+        )
       ],
     );
   }
