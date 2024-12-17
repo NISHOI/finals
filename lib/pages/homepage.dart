@@ -9,7 +9,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('TEA LOVER'),
         centerTitle: true,
-        backgroundColor: const Color(0xffFFAC00),
+        backgroundColor: const Color(0xFFAC00),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
@@ -141,7 +141,7 @@ class Product extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.asset(
-              'assets/product_img/$photo.png',
+              'assets/images/$photo.jpg',
               fit: BoxFit.cover,
             ),
           ),
