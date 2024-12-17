@@ -42,6 +42,7 @@ class HomePage extends StatelessWidget {
                 price: "₱729",
                 caption: "So yummy coffee",
                 photo: "coffee",
+                bgColor: "0xff0076D5",
               ),
               SizedBox(height: 20),
 
@@ -51,6 +52,7 @@ class HomePage extends StatelessWidget {
                 price: "₱729",
                 caption: "Coffee so good",
                 photo: "coffee",
+                bgColor: "0xff0076D5",
               ),
               SizedBox(height: 20),
 
@@ -60,6 +62,7 @@ class HomePage extends StatelessWidget {
                 price: "₱649",
                 caption: "Chocolate wow",
                 photo: "choco",
+                bgColor: "0xffE93AB8",
               ),
               SizedBox(height: 20),
 
@@ -69,6 +72,7 @@ class HomePage extends StatelessWidget {
                 price: "₱649",
                 caption: "This is tea",
                 photo: "tea",
+                bgColor: "0xffFAAC76",
               ),
               SizedBox(height: 50),
             ],
@@ -84,6 +88,7 @@ class Product extends StatelessWidget {
   final String price;
   final String caption;
   final String photo;
+  final String bgColor;
 
   const Product({
     super.key,
@@ -91,6 +96,7 @@ class Product extends StatelessWidget {
     required this.price,
     required this.caption,
     required this.photo,
+    required this.bgColor
   });
 
   @override
@@ -135,20 +141,20 @@ class Product extends StatelessWidget {
             height: 200, // Reduced height
             width: 300, // Reduced width
             decoration: BoxDecoration(
-              color: Colors.grey[300],
+              color: Color(int.parse(bgColor)),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.asset(
               'assets/product_img/$photo.png',
-              fit: BoxFit.cover,
+              fit: BoxFit.fitHeight,
             ),
           ),
         ),
-        const SizedBox(height: 10),
+        const SizedBox(height: 20),
 
         const Divider(
           color: Colors.black,
-          thickness: 1,
+          thickness: 2,
         ),
       ],
     );
