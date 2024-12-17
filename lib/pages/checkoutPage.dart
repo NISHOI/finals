@@ -28,8 +28,6 @@ class CheckoutPage extends StatelessWidget {
 
               SizedBox(height: 20),
 
-
-
               SizedBox(height: 50),
               Footer()
             ],
