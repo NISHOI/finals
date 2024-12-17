@@ -52,7 +52,6 @@ class OrderProduct extends StatelessWidget {
     required this.photo,
   });
 
-
   @override
   Widget build(BuildContext context) {
     return Column(

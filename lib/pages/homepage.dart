@@ -98,6 +98,7 @@ class HomePage extends StatelessWidget {
   }
 }
 
+
 class Product extends StatelessWidget {
   final String productName;
   final String price;

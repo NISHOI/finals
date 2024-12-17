@@ -136,7 +136,6 @@ class OrderProduct extends StatelessWidget {
             }).toList(),
           ),
         ),
-
         const SizedBox(height: 15),
 
         Center(

@@ -44,6 +44,7 @@ class CartPage extends StatelessWidget {
   }
 }
 
+
 class CartItem extends StatelessWidget {
   final String productName;
   final String price;
