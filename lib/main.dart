@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tea_elect_finals/pages/homepage.dart';
-import 'package:tea_elect_finals/pages/orderPage.dart';
 
 void main() {
   runApp(const MyApp());
