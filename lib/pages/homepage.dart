@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tea_elect_finals/pages/footer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -42,7 +41,7 @@ class HomePage extends StatelessWidget {
                 product_name: "MIDNIGHT OIL DARK ROAST COFFEE",
                 price: "P729",
                 caption: "The best coffee in town!",
-                photo: "Roasted_coffee_beans.jpg",
+                photo: "coffee_image",
               ),
               SizedBox(height: 20),
 
@@ -51,29 +50,18 @@ class HomePage extends StatelessWidget {
                 product_name: "TWILIGHT OIL DARK ROAST COFFEE",
                 price: "P729",
                 caption: "The best coffee in town!",
-                photo: "Roasted_coffee_beans.jpg",
+                photo: "coffee_image",
               ),
               SizedBox(height: 20),
 
               //-------<product>----
               Product(
-                product_name: "DOUBLE CHOCO",
+                product_name: "DOUBLE HABISCUS COFFEE",
                 price: "P729",
                 caption: "The best coffee in town!",
-                photo: "Roasted_coffee_beans.jpg",
+                photo: "coffee_image",
               ),
-              SizedBox(height: 20),
-
-              //-------<product>----
-              Product(
-                product_name: "HABISCUS COFFEE",
-                price: "P729",
-                caption: "The best coffee in town!",
-                photo: "Roasted_coffee_beans.jpg",
-              ),
-
               SizedBox(height: 50),
-              Footer()
             ],
           ),
         ),
@@ -142,16 +130,18 @@ class Product extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.asset(
-              'assets/product_img/$photo',
+              'assets/images/$photo/$photo.jpg',
               fit: BoxFit.cover,
             ),
           ),
         ),
         const SizedBox(height: 10),
 
-
+        const Divider(
+          color: Colors.black,
+          thickness: 1,
+        ),
       ],
     );
   }
 }
-
