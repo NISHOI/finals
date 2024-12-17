@@ -139,7 +139,7 @@ class Product extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.asset(
-              'assets/product_img/$photo.jpg',
+              'assets/product_img/$photo.png',
               fit: BoxFit.cover,
             ),
           ),
