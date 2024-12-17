@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tea_elect_finals/pages/footer.dart';
 
-import 'homepage.dart';
 
 class OrderPage extends StatelessWidget {
   final String productName;
@@ -21,9 +20,16 @@ class OrderPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(productName),
+        title: const Text("attheblanc", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontFamily: "Jaro"),),
         centerTitle: true,
         backgroundColor: const Color(0xffFFAC00),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.black,
+            height: 3.0,
+          )
+        ),
       ),
       body: SingleChildScrollView(
         child: Center(
@@ -51,7 +57,7 @@ class OrderPage extends StatelessWidget {
   }
 }
 
-class OrderProduct extends StatelessWidget {
+class OrderProduct extends StatefulWidget {
   final String productName;
   final String price;
   final String desc;
@@ -66,6 +72,15 @@ class OrderProduct extends StatelessWidget {
   });
 
   @override
+  State<OrderProduct> createState() => _OrderProduct();
+}
+
+
+  class _OrderProduct extends State<OrderProduct>{
+  String? selectedValue = "1 bag (16 Oz. / 454 g)";
+  int selectedAmount = 1;
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -77,13 +92,15 @@ class OrderProduct extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color(0xff93C94E),
               borderRadius: BorderRadius.circular(10),
+              border: Border.all(color: Colors.black, width: 3)
             ),
             child: Image.asset(
-              'assets/product_img/$photo.png',
+              'assets/product_img/${widget.photo}.png',
               fit: BoxFit.fitHeight,
             ),
           ),
         ),
+        const SizedBox(height: 10,),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
           child: Row(
@@ -91,10 +108,10 @@ class OrderProduct extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(right: 10.0),
                 child: Text(
-                  productName,
+                  widget.productName,
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
-                    fontSize: 20,
+                    fontSize: 22,
                     fontFamily: "Jaro",
                   ),
                 ),
@@ -105,10 +122,10 @@ class OrderProduct extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
           child: Text(
-            price,
+            widget.price,
             style: const TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 16,
+              fontSize: 18,
               fontFamily: "Jaro",
             ),
           ),
@@ -116,7 +133,7 @@ class OrderProduct extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
           child: Text(
-            desc,
+            widget.desc,
             style: const TextStyle(color: Colors.black, fontFamily: 'Jaro', fontSize: 16),
           ),
         ),
@@ -124,9 +141,14 @@ class OrderProduct extends StatelessWidget {
 
         Center(
           child: DropdownButton<String>(
-            value: "1 bag (16 Oz. / 454 g)",  // Current value displayed in the dropdown
+            value: selectedValue,  // Current value displayed in the dropdown
             hint: const Text('Select a value'),
-            onChanged: (String? newValue) {},
+            onChanged: (String? newValue) {
+              setState(() {
+                selectedValue = newValue;
+                selectedAmount = int.parse(newValue!.split(' ')[0]);
+              });
+            },
             items: <String>['1 bag (16 Oz. / 454 g)', '2 bags (32 Oz. / 908 g)', '3 bags (48 Oz. / 1362 g)']
                 .map<DropdownMenuItem<String>>((String value) {
               return DropdownMenuItem<String>(
@@ -139,29 +161,40 @@ class OrderProduct extends StatelessWidget {
         const SizedBox(height: 15),
 
         Center(
-          child: ElevatedButton(
-              onPressed: (){
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const HomePage(),
+          child: SizedBox(
+            width: double.infinity,
+            height: 70,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+                child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context, {'amount': selectedAmount});
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xffFFAC00),
+                  side: const BorderSide(color: Colors.black, width: 2),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2),
                   ),
-                );
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xffFFAC00),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(2)
-                )
+                ),
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
+                  child: Text(
+                    "ADD TO CART",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Jaro',
+                      fontSize: 24,
+                    ),
+                  ),
+                ),
               ),
-              child: const Padding(
-                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
-                child: Text("ADD TO CART", style: TextStyle(color: Colors.black, fontFamily: 'Jaro', fontSize: 20),),
-              )
             )
-          ,)
+          ),
+        )
 
-      //   tapos customer reviews shit dito bago footer kung kaya pa. pwede kahit wag na
+
+        //   tapos customer reviews shit dito bago footer kung kaya pa. pwede kahit wag na
 
       ],
     );

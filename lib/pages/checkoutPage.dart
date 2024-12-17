@@ -8,9 +8,16 @@ class CheckoutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Checkout Page"),
+        title: const Text("attheblanc", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontFamily: "Jaro"),),
         centerTitle: true,
         backgroundColor: const Color(0xffFFAC00),
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(4.0),
+          child: Container(
+            color: Colors.black,
+            height: 3.0,
+          )
+        ),
       ),
       body: const SingleChildScrollView(
         child: Center(
