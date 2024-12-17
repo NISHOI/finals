@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tea_elect_finals/pages/footer.dart';
 
+import 'checkoutPage.dart';
+
 class CartPage extends StatelessWidget {
   const CartPage({super.key});
 
@@ -17,6 +19,12 @@ class CartPage extends StatelessWidget {
             child: IconButton(
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CheckoutPage(),
+                  ),
+                );
               },
             ),
           ),
