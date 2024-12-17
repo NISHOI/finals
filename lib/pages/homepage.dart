@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('TEA LOVER'),
         centerTitle: true,
-        backgroundColor: const Color(0xFFAC00),
+        backgroundColor: const Color(0xffFFAC00),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
