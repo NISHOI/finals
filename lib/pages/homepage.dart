@@ -3,13 +3,9 @@ import 'package:flutter/material.dart';
 import 'cartPage.dart';
 import 'orderPage.dart';
 
-class HomePage extends StatefulWidget {
+class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  @override
-  State<HomePage> createState() => _HomePage();
-}
-class _HomePage extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(

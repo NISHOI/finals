@@ -51,8 +51,6 @@ class OrderPage extends StatelessWidget {
 
               SizedBox(height: 20),
 
-
-
               SizedBox(height: 50),
               Footer()
             ],
@@ -82,28 +80,23 @@ class OrderProduct extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            const SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      productName,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                    ),
-                  ],
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text(
+                  productName,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    fontFamily: "Jaro",
+                  ),
                 ),
-              ],
-            ),
-            const Spacer(),
-          ],
+              ),
+            ],
+          ),
         ),
         Padding(
           padding: const EdgeInsets.all(8.0),
