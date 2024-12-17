@@ -8,7 +8,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('TEA LOVER'),
         centerTitle: true,
-        backgroundColor: Colors.yellow,
+        backgroundColor: const Color(0xFFAC00),
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
@@ -39,27 +39,36 @@ class HomePage extends StatelessWidget {
               //-------<product>----
               Product(
                 productName: "MIDNIGHT OIL DARK ROAST COFFEE",
-                price: "P729",
-                caption: "The best coffee in town!",
-                photo: "coffee_image",
+                price: "₱729",
+                caption: "So yummy coffee",
+                photo: "coffee",
               ),
               SizedBox(height: 20),
 
               //-------<product>----
               Product(
                 productName: "TWILIGHT OIL DARK ROAST COFFEE",
-                price: "P729",
-                caption: "The best coffee in town!",
-                photo: "coffee_image",
+                price: "₱729",
+                caption: "Coffee so good",
+                photo: "coffee",
               ),
               SizedBox(height: 20),
 
               //-------<product>----
               Product(
-                productName: "DOUBLE HABISCUS COFFEE",
-                price: "P729",
-                caption: "The best coffee in town!",
-                photo: "coffee_image",
+                productName: "DOUBLE CHOC HOT COCOA",
+                price: "₱649",
+                caption: "Chocolate wow",
+                photo: "choco",
+              ),
+              SizedBox(height: 20),
+
+              //-------<product>----
+              Product(
+                productName: "HIBISCUS GREEN TEA",
+                price: "₱649",
+                caption: "This is tea",
+                photo: "tea",
               ),
               SizedBox(height: 50),
             ],
@@ -130,7 +139,7 @@ class Product extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.asset(
-              'assets/images/$photo/$photo.jpg',
+              'assets/images/$photo.jpg',
               fit: BoxFit.cover,
             ),
           ),
