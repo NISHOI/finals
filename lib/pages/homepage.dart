@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tea_elect_finals/pages/footer.dart';
+
 
 import 'cartPage.dart';
 import 'orderPage.dart';
@@ -84,6 +86,7 @@ class HomePage extends StatelessWidget {
                 bgColor: "0xffFAAC76",
               ),
               SizedBox(height: 50),
+              Footer()
             ],
           ),
         ),
