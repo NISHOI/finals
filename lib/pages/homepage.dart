@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tea_elect_finals/pages/footer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -38,30 +39,41 @@ class HomePage extends StatelessWidget {
 
               //-------<product>----
               Product(
-                product_name: "MIDNIGHT OIL DARK ROAST COFFEE",
+                productName: "MIDNIGHT OIL DARK ROAST COFFEE",
                 price: "P729",
                 caption: "The best coffee in town!",
-                photo: "coffee_image",
+                photo: "Roasted_coffee_beans.jpg",
               ),
               SizedBox(height: 20),
 
               //-------<product>----
               Product(
-                product_name: "TWILIGHT OIL DARK ROAST COFFEE",
+                productName: "TWILIGHT OIL DARK ROAST COFFEE",
                 price: "P729",
                 caption: "The best coffee in town!",
-                photo: "coffee_image",
+                photo: "Roasted_coffee_beans.jpg",
               ),
               SizedBox(height: 20),
 
               //-------<product>----
               Product(
-                product_name: "DOUBLE HABISCUS COFFEE",
+              productName: "DOUBLE HABISCUS COFFEE",
+              price: "P729",
+              caption: "The best coffee in town!",
+              photo: "Roasted_coffee_beans.jpg",
+              ),
+              SizedBox(height: 20),
+
+              //-------<product>----
+              Product(
+                productName: "HABISCUS COFFEE",
                 price: "P729",
                 caption: "The best coffee in town!",
-                photo: "coffee_image",
+                photo: "Roasted_coffee_beans.jpg",
               ),
+
               SizedBox(height: 50),
+              Footer()
             ],
           ),
         ),
@@ -71,14 +83,14 @@ class HomePage extends StatelessWidget {
 }
 
 class Product extends StatelessWidget {
-  final String product_name;
+  final String productName;
   final String price;
   final String caption;
   final String photo;
 
   const Product({
     super.key,
-    required this.product_name,
+    required this.productName,
     required this.price,
     required this.caption,
     required this.photo,
@@ -99,11 +111,11 @@ class Product extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      product_name,
+                      productName,
                       style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                     ),
                   ],
                 ),
@@ -130,18 +142,16 @@ class Product extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.asset(
-              'assets/images/$photo/$photo.jpg',
+              'assets/product_img/$photo',
               fit: BoxFit.cover,
             ),
           ),
         ),
         const SizedBox(height: 10),
 
-        const Divider(
-          color: Colors.black,
-          thickness: 1,
-        ),
+
       ],
     );
   }
 }
+
