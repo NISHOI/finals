@@ -4,7 +4,14 @@ import 'package:tea_elect_finals/pages/footer.dart';
 import 'checkoutPage.dart';
 
 class CartPage extends StatelessWidget {
-  const CartPage({super.key});
+  final String cartItems;
+  final String itemAmount;
+
+  const CartPage({
+    super.key,
+    required this.cartItems,
+    required this.itemAmount,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -12,23 +19,7 @@ class CartPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Your Cart"),
         centerTitle: true,
-        backgroundColor: Colors.yellow,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: IconButton(
-              icon: const Icon(Icons.shopping_cart),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const CheckoutPage(),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
+        backgroundColor: const Color(0xffFFAC00),
       ),
       body: const SingleChildScrollView(
         child: Center(
@@ -36,18 +27,13 @@ class CartPage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               SizedBox(height: 30),
-              OrderProduct(
+              CartItem( // Gamit nalang ng listview builder dito kasi di natin alam kung ilan items iaadd sa cart
                 productName: "MIDNIGHT OIL DARK ROAST COFFEE",
                 price: "P729",
-                caption: "The best coffee in town!",
                 photo: "Roasted_coffee_beans.jpg",
               ),
               SizedBox(height: 20),
-
               SizedBox(height: 20),
-
-
-
               SizedBox(height: 50),
               Footer()
             ],
@@ -58,20 +44,17 @@ class CartPage extends StatelessWidget {
   }
 }
 
-class OrderProduct extends StatelessWidget {
+class CartItem extends StatelessWidget {
   final String productName;
   final String price;
-  final String caption;
   final String photo;
 
-  const OrderProduct({
+  const CartItem({
     super.key,
     required this.productName,
     required this.price,
-    required this.caption,
     required this.photo,
   });
-
 
   @override
   Widget build(BuildContext context) {
@@ -96,13 +79,6 @@ class OrderProduct extends StatelessWidget {
             ],
           ),
         ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            caption,
-            style: const TextStyle(color: Colors.black, fontSize: 13),
-          ),
-        ),
         const SizedBox(height: 10),
 
         Center(
@@ -110,7 +86,7 @@ class OrderProduct extends StatelessWidget {
             height: 200, // Reduced height
             width: 300, // Reduced width
             decoration: BoxDecoration(
-              color: Colors.grey[300],
+              color: Colors.white,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.asset(
@@ -120,7 +96,6 @@ class OrderProduct extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 10),
-
 
       ],
     );

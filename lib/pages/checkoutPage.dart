@@ -10,17 +10,7 @@ class CheckoutPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Checkout Page"),
         centerTitle: true,
-        backgroundColor: Colors.yellow,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: IconButton(
-              icon: const Icon(Icons.shopping_cart),
-              onPressed: () {
-              },
-            ),
-          ),
-        ],
+        backgroundColor: const Color(0xffFFAC00),
       ),
       body: const SingleChildScrollView(
         child: Center(

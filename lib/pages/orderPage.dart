@@ -5,10 +5,16 @@ import 'cartPage.dart';
 
 class OrderPage extends StatelessWidget {
   final String productName;
+  final String photo;
+  final String price;
+  final String desc;
 
   const OrderPage({
     super.key,
     required this.productName,
+    required this.photo,
+    required this.price,
+    required this.desc
   });
 
   @override
@@ -17,42 +23,26 @@ class OrderPage extends StatelessWidget {
       appBar: AppBar(
         title: Text(productName),
         centerTitle: true,
-        backgroundColor: Colors.yellow,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.only(right: 16.0),
-            child: IconButton(
-              icon: const Icon(Icons.shopping_cart),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const CartPage(),
-                  ),
-                );
-              },
-            ),
-          ),
-        ],
+        backgroundColor: const Color(0xffFFAC00),
       ),
-      body: const SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               OrderProduct(
-                productName: "MIDNIGHT OIL DARK ROAST COFFEE",
-                price: "P729",
-                caption: "The best coffee in town!",
-                photo: "Roasted_coffee_beans.jpg",
+                productName: productName,
+                price: price,
+                desc: desc,
+                photo: photo,
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
 
-              SizedBox(height: 50),
-              Footer()
+              const SizedBox(height: 50),
+              const Footer()
             ],
           ),
         ),
@@ -64,14 +54,14 @@ class OrderPage extends StatelessWidget {
 class OrderProduct extends StatelessWidget {
   final String productName;
   final String price;
-  final String caption;
+  final String desc;
   final String photo;
 
   const OrderProduct({
     super.key,
     required this.productName,
     required this.price,
-    required this.caption,
+    required this.desc,
     required this.photo,
   });
 
@@ -80,6 +70,20 @@ class OrderProduct extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Center(
+          child: Container(
+            height: 300, // Reduced height
+            width: 300, // Reduced width
+            decoration: BoxDecoration(
+              color: const Color(0xff93C94E),
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Image.asset(
+              'assets/product_img/$photo.png',
+              fit: BoxFit.fitHeight,
+            ),
+          ),
+        ),
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
           child: Row(
@@ -99,30 +103,59 @@ class OrderProduct extends StatelessWidget {
           ),
         ),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
           child: Text(
-            caption,
-            style: const TextStyle(color: Colors.black, fontSize: 13),
+            price,
+            style: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              fontFamily: "Jaro",
+            ),
           ),
         ),
-        const SizedBox(height: 10),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+          child: Text(
+            desc,
+            style: const TextStyle(color: Colors.black, fontFamily: 'Jaro', fontSize: 16),
+          ),
+        ),
+        const SizedBox(height: 15),
 
         Center(
-          child: Container(
-            height: 200, // Reduced height
-            width: 300, // Reduced width
-            decoration: BoxDecoration(
-              color: Colors.grey[300],
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Image.asset(
-              'assets/product_img/$photo',
-              fit: BoxFit.cover,
-            ),
+          child: DropdownButton<String>(
+            value: "1 bag (16 Oz. / 454 g)",  // Current value displayed in the dropdown
+            hint: const Text('Select a value'),
+            onChanged: (String? newValue) {},
+            items: <String>['1 bag (16 Oz. / 454 g)', '2 bags (32 Oz. / 908 g)', '3 bags (48 Oz. / 1362 g)']
+                .map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
           ),
         ),
-        const SizedBox(height: 10),
 
+        const SizedBox(height: 15),
+
+        Center(
+          child: ElevatedButton(
+              onPressed: (){},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xffFFAC00),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(2)
+                )
+              ),
+              child: const Padding(
+                padding: EdgeInsets.symmetric(vertical: 5.0, horizontal: 8.0),
+                child: Text("ADD TO CART", style: TextStyle(color: Colors.black, fontFamily: 'Jaro', fontSize: 20),),
+              )
+            )
+          ,)
+
+      //   tapos customer reviews shit dito bago footer kung kaya pa. pwede kahit wag na
 
       ],
     );
