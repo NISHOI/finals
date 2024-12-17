@@ -6,14 +6,14 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('TEA LOVER'),
+        title: const Text('TEA LOVER'),
         centerTitle: true,
         backgroundColor: Colors.yellow,
         actions: [
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: IconButton(
-              icon: Icon(Icons.shopping_cart),
+              icon: const Icon(Icons.shopping_cart),
               onPressed: () {
                 // Handle cart action
               },
@@ -21,7 +21,7 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: SingleChildScrollView(
+      body: const SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +38,7 @@ class HomePage extends StatelessWidget {
 
               //-------<product>----
               Product(
-                product_name: "MIDNIGHT OIL DARK ROAST COFFEE",
+                productName: "MIDNIGHT OIL DARK ROAST COFFEE",
                 price: "P729",
                 caption: "The best coffee in town!",
                 photo: "coffee_image",
@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
 
               //-------<product>----
               Product(
-                product_name: "TWILIGHT OIL DARK ROAST COFFEE",
+                productName: "TWILIGHT OIL DARK ROAST COFFEE",
                 price: "P729",
                 caption: "The best coffee in town!",
                 photo: "coffee_image",
@@ -56,7 +56,7 @@ class HomePage extends StatelessWidget {
 
               //-------<product>----
               Product(
-                product_name: "DOUBLE HABISCUS COFFEE",
+                productName: "DOUBLE HABISCUS COFFEE",
                 price: "P729",
                 caption: "The best coffee in town!",
                 photo: "coffee_image",
@@ -71,14 +71,14 @@ class HomePage extends StatelessWidget {
 }
 
 class Product extends StatelessWidget {
-  final String product_name;
+  final String productName;
   final String price;
   final String caption;
   final String photo;
 
   const Product({
     super.key,
-    required this.product_name,
+    required this.productName,
     required this.price,
     required this.caption,
     required this.photo,
@@ -99,11 +99,11 @@ class Product extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      product_name,
+                      productName,
                       style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
+                    const Padding(
+                      padding: EdgeInsets.all(8.0),
                     ),
                   ],
                 ),
