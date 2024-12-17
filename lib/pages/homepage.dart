@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tea_elect_finals/pages/footer.dart';
 
+
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
   @override
@@ -141,7 +142,7 @@ class Product extends StatelessWidget {
               borderRadius: BorderRadius.circular(10),
             ),
             child: Image.asset(
-              'assets/images/$photo.jpg',
+              'assets/images/$photo.png',
               fit: BoxFit.cover,
             ),
           ),
