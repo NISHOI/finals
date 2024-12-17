@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:tea_elect_finals/pages/footer.dart';
 
-class Orderpage extends StatelessWidget {
-  const Orderpage({super.key});
+import 'cartPage.dart';
+
+class OrderPage extends StatelessWidget {
+  final String productName;
+
+  const OrderPage({
+    super.key,
+    required this.productName,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TEA LOVER'),
+        title: Text(productName),
         centerTitle: true,
         backgroundColor: Colors.yellow,
         actions: [
@@ -17,7 +24,12 @@ class Orderpage extends StatelessWidget {
             child: IconButton(
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {
-                // Handle cart action
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CartPage(),
+                  ),
+                );
               },
             ),
           ),

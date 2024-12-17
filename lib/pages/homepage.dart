@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+import 'cartPage.dart';
+import 'orderPage.dart';
+
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePage();
+}
+class _HomePage extends State<HomePage>{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('TEA LOVER'),
+        title: const Text('TEA LOVER', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontFamily: "Jaro"),),
         centerTitle: true,
         backgroundColor: const Color(0xffFFAC00),
         actions: [
@@ -15,7 +23,12 @@ class HomePage extends StatelessWidget {
             child: IconButton(
               icon: const Icon(Icons.shopping_cart),
               onPressed: () {
-                // Handle cart action
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const CartPage(),
+                  ),
+                );
               },
             ),
           ),
@@ -96,65 +109,79 @@ class Product extends StatelessWidget {
     required this.price,
     required this.caption,
     required this.photo,
-    required this.bgColor
+    required this.bgColor,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Center(
-          child: Container(
-            height: 200, // Reduced height
-            width: 300, // Reduced width
-            decoration: BoxDecoration(
-              color: Color(int.parse(bgColor)),
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Image.asset(
-              'assets/product_img/$photo.png',
-              fit: BoxFit.fitHeight,
-            ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => OrderPage(productName: productName),
           ),
-        ),
-        const SizedBox(height: 20),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
-          child: Row(
-            children: [
-              const SizedBox(width: 10),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      Text(
-                        productName,
-                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, fontFamily: "Jaro"),
-                      ),
-                    ],
-                  ),
-                ],
+        );
+      },
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Center(
+            child: Container(
+              height: 200,
+              width: 300,
+              decoration: BoxDecoration(
+                color: Color(int.parse(bgColor)),
+                borderRadius: BorderRadius.circular(10),
               ),
-            ],
+              child: Image.asset(
+                'assets/product_img/$photo.png',
+                fit: BoxFit.fitHeight,
+              ),
+            ),
           ),
-        ),
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
-          child: Text(
-            caption,
-            style: const TextStyle(color: Colors.black, fontSize: 13, fontFamily: "Jaro"),
+          const SizedBox(height: 20),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+            child: Row(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(right: 10.0),
+                  child: Text(
+                    productName,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                      fontFamily: "Jaro",
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-        const SizedBox(height: 20),
-
-        const Divider(
-          color: Colors.black,
-          thickness: 2,
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  caption,
+                  style: const TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Jaro"),
+                ),
+                Text(
+                  price,
+                  style: const TextStyle(color: Colors.black, fontSize: 16, fontFamily: "Jaro"),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          const Divider(
+            color: Colors.black,
+            thickness: 2,
+          ),
+        ],
+      ),
     );
   }
 }
