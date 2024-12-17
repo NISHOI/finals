@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tea_elect_finals/pages/footer.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -71,6 +72,7 @@ class HomePage extends StatelessWidget {
                 photo: "tea",
               ),
               SizedBox(height: 50),
+              Footer()
             ],
           ),
         ),
