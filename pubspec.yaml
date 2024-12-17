@@ -63,6 +63,7 @@ flutter:
       - assets/product_img/coffee.png
       - assets/product_img/choco.png
       - assets/product_img/tea.png
+      - assets/fonts/
 
   fonts:
     - family: Jaro

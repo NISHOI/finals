@@ -29,7 +29,7 @@ class HomePage extends StatelessWidget {
               SizedBox(height: 30),
               Text(
                 'Buy Coffee, Tea, or Hot Choco',
-                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontFamily: "Jaro"),
                 textAlign: TextAlign.center,
               ),
               SizedBox(height: 20),
@@ -48,7 +48,7 @@ class HomePage extends StatelessWidget {
 
               //-------<product>----
               Product(
-                productName: "TWILIGHT OIL DARK ROAST COFFEE",
+                productName: "TWILIGHT MEDIUM ROAST COFFEE",
                 price: "₱729",
                 caption: "Coffee so good",
                 photo: "coffee",
@@ -104,38 +104,6 @@ class Product extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Row(
-          children: [
-            const SizedBox(width: 10),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      productName,
-                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                    ),
-                    const Padding(
-                      padding: EdgeInsets.all(8.0),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            const Spacer(),
-          ],
-        ),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Text(
-            caption,
-            style: const TextStyle(color: Colors.black, fontSize: 13),
-          ),
-        ),
-        const SizedBox(height: 10),
-
         Center(
           child: Container(
             height: 200, // Reduced height
@@ -148,6 +116,36 @@ class Product extends StatelessWidget {
               'assets/product_img/$photo.png',
               fit: BoxFit.fitHeight,
             ),
+          ),
+        ),
+        const SizedBox(height: 20),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+          child: Row(
+            children: [
+              const SizedBox(width: 10),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        productName,
+                        style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16, fontFamily: "Jaro"),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
+          child: Text(
+            caption,
+            style: const TextStyle(color: Colors.black, fontSize: 13, fontFamily: "Jaro"),
           ),
         ),
         const SizedBox(height: 20),
