@@ -15,14 +15,23 @@ class _HomePage extends State<HomePage> {
   Map<List<String>, int> cartItems = {};
 
   void addToCart(List<String> productDetails, int quantity) {
+    List<String>? existingKey;
+    for (var key in cartItems.keys) {
+      if (key[0] == productDetails[0]) {
+        existingKey = key;
+        break;
+      }
+    }
+
     setState(() {
-      // If the product is already in the cart, update the quantity
-      if (cartItems.containsKey(productDetails)) {
-        cartItems[productDetails] = cartItems[productDetails]! + quantity;
+      if (existingKey != null) {
+        // Update the quantity if the item exists
+        cartItems[existingKey] = cartItems[existingKey]! + quantity;
       } else {
-        // If the product is not in the cart, add it
+        // Add a new item if it doesn't exist
         cartItems[productDetails] = quantity;
       }
+      debugPrint("Cart items: $cartItems");
     });
   }
 

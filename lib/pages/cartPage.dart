@@ -17,6 +17,7 @@ class CartPage extends StatefulWidget {
 
   class _CartPage extends State<CartPage> {
 
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,10 +81,11 @@ class CartPage extends StatefulWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xffFFAC00),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(2)
-                      )
+                    backgroundColor: const Color(0xffFFAC00),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(2)
+                    ),
+                    side: const BorderSide(color: Colors.black, width: 2),
                   ),
                   child: const Text(
                     "PROCEED TO CHECKOUT",

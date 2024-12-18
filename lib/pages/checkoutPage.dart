@@ -9,16 +9,29 @@ class CheckoutPage extends StatefulWidget {
 }
 
 class _CheckoutPageState extends State<CheckoutPage> {
-  String? selectedPaymentMethod; // Holds the selected payment method
+  String? selectedPaymentMethod;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: const Color(0xFFFFC107), // Yellow App Bar
-        title: const Text('Checkout Page',
-            style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-        leading: const Icon(Icons.arrow_back, color: Colors.black),
+        backgroundColor: const Color(0xffFFAC00),
+        title: const Text(
+          'attheblanc',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            fontFamily: "Jaro",
+          ),
+        ),
+        centerTitle: true,
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context);
+          },
+          icon: const Icon(Icons.arrow_back),
+          color: Colors.black,
+        ),
         elevation: 0,
       ),
       body: Padding(
@@ -27,44 +40,49 @@ class _CheckoutPageState extends State<CheckoutPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // Order Summary
               const Text(
                 'Order Summary',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.black),
+                    fontFamily: 'Jaro',
+                    color: Colors.black
+                ),
               ),
               const SizedBox(height: 10),
               const Text(
                 'MIDNIGHT OIL DARK ROAST COFFEE    x1',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Jaro',),
               ),
               const Text(
                 'DOUBLE CHOC HOT COCOA    x1',
-                style: TextStyle(fontWeight: FontWeight.bold),
+                style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Jaro',),
               ),
               const SizedBox(height: 10),
               const Divider(),
               const Text(
                 'Total Cost:',
-                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 16,
+                  fontFamily: 'Jaro',),
               ),
               const Text(
                 '₱1378.00 (Shipping incl.)',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
-                    fontSize: 16),
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontFamily: 'Jaro',),
               ),
               const SizedBox(height: 20),
 
-              // Payment Method Section
               const Text(
                 'Payment Method',
                 style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
+                    fontFamily: 'Jaro',
                     color: Colors.black),
               ),
               const SizedBox(height: 10),
@@ -81,9 +99,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
               const Text(
                 'Shipping Address',
                 style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                    color: Colors.black),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                  color: Colors.black,
+                  fontFamily: "Jaro"
+                ),
               ),
               const SizedBox(height: 10),
               customTextField('Country'),
@@ -98,7 +118,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
             width: double.infinity,
             child: ElevatedButton(
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFFFFC107), // Yellow Button
+                backgroundColor: const Color(0xffFFAC00),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(2)
+                ),
+                side: const BorderSide(color: Colors.black, width: 2),
                 padding: const EdgeInsets.symmetric(vertical: 15),
               ),
               onPressed: () {
@@ -118,12 +142,14 @@ class _CheckoutPageState extends State<CheckoutPage> {
                   );
                 });
               },
+
               child: const Text(
                 'ORDER',
                 style: TextStyle(
                   color: Colors.black,
                   fontWeight: FontWeight.bold,
                   fontSize: 16,
+                  fontFamily: "Jaro"
                 ),
               ),
             ),
