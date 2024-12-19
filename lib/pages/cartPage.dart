@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:tea_elect_finals/pages/footer.dart';
-
 import 'checkoutPage.dart';
 
 class CartPage extends StatefulWidget {
@@ -15,14 +14,19 @@ class CartPage extends StatefulWidget {
   State<CartPage> createState() => _CartPage();
 }
 
-  class _CartPage extends State<CartPage> {
-
-
+class _CartPage extends State<CartPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("attheblanc", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, fontFamily: "Jaro"),),
+        title: const Text(
+          "attheblanc",
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+            fontFamily: "Jaro",
+          ),
+        ),
         centerTitle: true,
         backgroundColor: const Color(0xffFFAC00),
         bottom: PreferredSize(
@@ -30,79 +34,84 @@ class CartPage extends StatefulWidget {
           child: Container(
             color: Colors.black,
             height: 3.0,
-          )
-        ),
-      ),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            children: [
-              const SizedBox(height: 30),
-              if (widget.cartItems.isNotEmpty)
-                ListView.builder(
-                  shrinkWrap: true,
-                  itemCount: widget.cartItems.length,
-                  itemBuilder: (context, index) {
-                    List<String> productDetails = widget.cartItems.keys.toList()[index];
-                    String productName = productDetails[0];
-                    String price = productDetails[1];
-                    String photo = productDetails[2];
-                    int quantity = widget.cartItems[productDetails]!;
-
-                    return CartItem(
-                      productName: productName,
-                      price: price,
-                      photo: photo,
-                      quantity: quantity,
-                      onQuantityChange: (int newQuantity) {
-                        setState(() {
-                          widget.cartItems[productDetails] = newQuantity;
-                        });
-                      },
-                    );
-                  },
-                ),
-              if (widget.cartItems.isEmpty)
-                const Center(
-                  child: Text(
-                    'Your cart is empty.',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                ),
-              const SizedBox(height: 70),
-              Center(
-                child: ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const CheckoutPage(),
-                      ),
-                    );
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xffFFAC00),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(2)
-                    ),
-                    side: const BorderSide(color: Colors.black, width: 2),
-                  ),
-                  child: const Text(
-                    "PROCEED TO CHECKOUT",
-                    style: TextStyle(color: Colors.black, fontFamily: 'Jaro', fontSize: 20),
-                  ),
-                ),
-              ),
-              const SizedBox(height: 100,),
-              const Footer(),
-            ],
           ),
         ),
+      ),
+      body: ListView(
+        children: [
+          const SizedBox(height: 30),
+          if (widget.cartItems.isNotEmpty)
+            ...widget.cartItems.keys.toList().asMap().entries.map((entry) {
+              List<String> productDetails = entry.value;
+              int index = entry.key;
+              String productName = productDetails[0];
+              String price = productDetails[1];
+              String photo = productDetails[2];
+              int quantity = widget.cartItems[productDetails]!;
+
+              return CartItem(
+                productName: productName,
+                price: price,
+                photo: photo,
+                quantity: quantity,
+                onQuantityChange: (int newQuantity) {
+                  setState(() {
+                    widget.cartItems[productDetails] = newQuantity;
+                  });
+                },
+              );
+            }).toList(),
+          if (widget.cartItems.isEmpty)
+            const Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SizedBox(height: 120),
+                  Text(
+                    'Your cart is empty.',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  SizedBox(height: 90),
+                ],
+              ),
+            ),
+          const SizedBox(height: 70),
+          Center(
+            child: ElevatedButton(
+              onPressed: widget.cartItems.isEmpty
+                  ? null
+                  : () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => CheckoutPage(cartItems: widget.cartItems,),
+                  ),
+                );
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color(0xffFFAC00),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(2),
+                ),
+                side: const BorderSide(color: Colors.black, width: 2),
+              ),
+              child: const Text(
+                "PROCEED TO CHECKOUT",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontFamily: 'Jaro',
+                  fontSize: 24,
+                ),
+              ),
+            ),
+          ),
+          const SizedBox(height: 100),
+          const Footer(),
+        ],
       ),
     );
   }
 }
-
 
 class CartItem extends StatelessWidget {
   final String productName;
@@ -129,7 +138,6 @@ class CartItem extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
           child: Row(
             children: [
-              // Image on the left side
               Image.asset(
                 'assets/product_img/$photo.png',
                 width: 100,
@@ -137,8 +145,6 @@ class CartItem extends StatelessWidget {
                 fit: BoxFit.contain,
               ),
               const SizedBox(width: 10),
-
-              // Product name in the center
               Expanded(
                 child: Text(
                   productName,
@@ -150,7 +156,6 @@ class CartItem extends StatelessWidget {
                   ),
                 ),
               ),
-
               Text(
                 price,
                 style: const TextStyle(
@@ -161,20 +166,19 @@ class CartItem extends StatelessWidget {
             ],
           ),
         ),
-        const SizedBox(height: 40,),
-
+        const SizedBox(height: 40),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20.0),
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.black, // Border color
-                width: 2, // Border width
+                color: Colors.black,
+                width: 2,
               ),
               color: const Color(0xffFFAC00),
             ),
             width: 120,
-            height: 50,
+            height: 45,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -183,7 +187,7 @@ class CartItem extends StatelessWidget {
                   onPressed: () {
                     if (quantity > 1) {
                       onQuantityChange(quantity - 1);
-                   }
+                    }
                   },
                 ),
                 Text(
@@ -202,7 +206,6 @@ class CartItem extends StatelessWidget {
                     }
                   },
                 ),
-
               ],
             ),
           ),
@@ -214,8 +217,7 @@ class CartItem extends StatelessWidget {
               const Spacer(),
               IconButton(
                 icon: const Icon(Icons.delete),
-                onPressed: () {
-                },
+                onPressed: () {},
               ),
             ],
           ),

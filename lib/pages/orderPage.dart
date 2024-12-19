@@ -80,6 +80,8 @@ class OrderProduct extends StatefulWidget {
   String? selectedValue = "1 bag (16 Oz. / 454 g)";
   int selectedAmount = 1;
 
+  get price => null;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -87,8 +89,8 @@ class OrderProduct extends StatefulWidget {
       children: [
         Center(
           child: Container(
-            height: 300, // Reduced height
-            width: 300, // Reduced width
+            height: 300,
+            width: 300,
             decoration: BoxDecoration(
               color: const Color(0xff93C94E),
               borderRadius: BorderRadius.circular(10),
@@ -122,7 +124,7 @@ class OrderProduct extends StatefulWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20.0),
           child: Text(
-            widget.price,
+            "₱ ${widget.price}",
             style: const TextStyle(
               fontWeight: FontWeight.bold,
               fontSize: 18,
@@ -141,7 +143,7 @@ class OrderProduct extends StatefulWidget {
 
         Center(
           child: DropdownButton<String>(
-            value: selectedValue,  // Current value displayed in the dropdown
+            value: selectedValue,
             hint: const Text('Select a value'),
             onChanged: (String? newValue) {
               setState(() {
@@ -194,7 +196,6 @@ class OrderProduct extends StatefulWidget {
         )
 
 
-        //   tapos customer reviews shit dito bago footer kung kaya pa. pwede kahit wag na
 
       ],
     );

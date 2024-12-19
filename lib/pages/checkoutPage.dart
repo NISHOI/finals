@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'homepage.dart';
 
 class CheckoutPage extends StatefulWidget {
-  const CheckoutPage({super.key});
+  final Map<List<String>, int> cartItems;
+
+  const CheckoutPage({
+    super.key,
+    required this.cartItems,
+  });
 
   @override
   State<CheckoutPage> createState() => _CheckoutPageState();
@@ -10,6 +15,17 @@ class CheckoutPage extends StatefulWidget {
 
 class _CheckoutPageState extends State<CheckoutPage> {
   String? selectedPaymentMethod;
+
+  double calculateSubtotal() {
+    double subtotal = 0.0;
+
+    widget.cartItems.forEach((productDetails, quantity) {
+      double price = double.parse(productDetails[1]);
+      subtotal += price * quantity;
+    });
+
+    return subtotal;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,33 +65,38 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     color: Colors.black
                 ),
               ),
-              const SizedBox(height: 10),
-              const Text(
-                'MIDNIGHT OIL DARK ROAST COFFEE    x1',
-                style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Jaro',),
+
+              buildCartItemsList(widget.cartItems),
+              Container(
+                padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 20),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black, width: 2),
+                  borderRadius: BorderRadius.circular(8),
+                  color: Colors.white,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Subtotal:',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Jaro",
+                      ),
+                    ),
+                    Text(
+                      '₱${calculateSubtotal().toStringAsFixed(2)}',
+                      style: const TextStyle(
+                          fontSize: 18,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Jaro",
+                          color: Colors.black
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              const Text(
-                'DOUBLE CHOC HOT COCOA    x1',
-                style: TextStyle(fontWeight: FontWeight.bold, fontFamily: 'Jaro',),
-              ),
-              const SizedBox(height: 10),
-              const Divider(),
-              const Text(
-                'Total Cost:',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  fontFamily: 'Jaro',),
-              ),
-              const Text(
-                '₱1378.00 (Shipping incl.)',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                  fontSize: 16,
-                  fontFamily: 'Jaro',),
-              ),
-              const SizedBox(height: 20),
 
               const Text(
                 'Payment Method',
@@ -83,11 +104,11 @@ class _CheckoutPageState extends State<CheckoutPage> {
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     fontFamily: 'Jaro',
-                    color: Colors.black),
+                    color: Colors.black
+                ),
               ),
               const SizedBox(height: 10),
 
-              // Custom Payment Tiles
               paymentOptionTile('Cash on Delivery'),
               paymentOptionTile('Credit / Debit Card'),
               paymentOptionTile('GCash'),
@@ -95,7 +116,6 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
               const SizedBox(height: 20),
 
-              // Shipping Address Section
               const Text(
                 'Shipping Address',
                 style: TextStyle(
@@ -113,47 +133,44 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
               const SizedBox(height: 20),
 
-          // Order Button
-          SizedBox(
-            width: double.infinity,
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xffFFAC00),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(2)
-                ),
-                side: const BorderSide(color: Colors.black, width: 2),
-                padding: const EdgeInsets.symmetric(vertical: 15),
-              ),
-              onPressed: () {
-                // Action on order
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(
-                    content: Text(
-                        'Order Placed Successfully!\nPayment: ${selectedPaymentMethod ?? "Not Selected"}'),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xffFFAC00),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(2)
+                    ),
+                    side: const BorderSide(color: Colors.black, width: 2),
+                    padding: const EdgeInsets.symmetric(vertical: 15),
                   ),
-                );
+                  onPressed: () {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        content: Text(
+                            'Order Placed Successfully!\nPayment: ${selectedPaymentMethod ?? "Not Selected"}'),
+                      ),
+                    );
 
-                // Navigate to Homepage after showing SnackBar
-                Future.delayed(const Duration(milliseconds: 500), () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const HomePage()),
-                  );
-                });
-              },
+                    Future.delayed(const Duration(milliseconds: 500), () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const HomePage()),
+                      );
+                    });
+                  },
 
-              child: const Text(
-                'ORDER',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                  fontFamily: "Jaro"
+                  child: const Text(
+                    'ORDER',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 24,
+                      fontFamily: "Jaro"
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
 
             ],
           ),
@@ -162,7 +179,41 @@ class _CheckoutPageState extends State<CheckoutPage> {
     );
   }
 
-  // Custom Payment Tile
+  Widget buildCartItemsList(Map<List<String>, int> cartItems) {
+    return ListView.builder(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      itemCount: cartItems.keys.length,
+      itemBuilder: (context, index) {
+        List<String> productDetails = cartItems.keys.elementAt(index);
+        int quantity = cartItems[productDetails]!;
+        String productName = productDetails[0];
+
+        return ListTile(
+          title: Text(
+            productName,
+            style: const TextStyle(
+                fontFamily: 'Jaro',
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Colors.black
+            ),
+          ),
+          subtitle: Text(
+            'Qty.: ${quantity.toString()}',
+            style: const TextStyle(
+              fontFamily: 'Jaro',
+              fontSize: 15,
+              color: Colors.black,
+            ),
+          ),
+        );
+
+      },
+    );
+  }
+
+
   Widget paymentOptionTile(String title) {
     return GestureDetector(
       onTap: () {
@@ -188,13 +239,13 @@ class _CheckoutPageState extends State<CheckoutPage> {
             Text(
               title,
               style: const TextStyle(
-                  fontWeight: FontWeight.bold, fontSize: 14, color: Colors.black),
+                fontFamily: "Jaro", fontSize: 18, color: Colors.black),
             ),
             Icon(
               selectedPaymentMethod == title
-                  ? Icons.radio_button_checked
-                  : Icons.radio_button_off,
-              color: Colors.black,
+                ? Icons.radio_button_checked
+                : Icons.radio_button_off,
+                color: Colors.black,
             )
           ],
         ),
@@ -202,13 +253,17 @@ class _CheckoutPageState extends State<CheckoutPage> {
     );
   }
 
-  // Custom Text Field Widget
   Widget customTextField(String hintText) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10.0),
       child: TextField(
         decoration: InputDecoration(
           hintText: hintText,
+          hintStyle:  const TextStyle(
+            fontFamily: "Jaro",
+            fontSize: 18.0,
+            color: Colors.grey,
+          ),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
               borderSide: const BorderSide(color: Colors.grey)),
@@ -221,3 +276,4 @@ class _CheckoutPageState extends State<CheckoutPage> {
     );
   }
 }
+

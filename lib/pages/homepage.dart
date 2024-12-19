@@ -25,10 +25,8 @@ class _HomePage extends State<HomePage> {
 
     setState(() {
       if (existingKey != null) {
-        // Update the quantity if the item exists
         cartItems[existingKey] = cartItems[existingKey]! + quantity;
       } else {
-        // Add a new item if it doesn't exist
         cartItems[productDetails] = quantity;
       }
       debugPrint("Cart items: $cartItems");
@@ -107,14 +105,14 @@ class _HomePage extends State<HomePage> {
               //-------<product>----
               Product(
                 productName: "MIDNIGHT OIL DARK ROAST COFFEE",
-                price: "₱729",
+                price: "729",
                 caption: "So yummy coffee",
                 photo: "coffee",
                 bgColor: "0xff0076D5",
                 desc: "Our OG coffee is a dream, if your dream is of chocolatey nuttiness with beans roasted to the edge of awesome. Go deep, go rich and commit with the darkest coffee you can put in your cup. Responsibly sourced. Organic beans. Just good.",
                 onTap: () => navigateToOrderPage(
                     "MIDNIGHT OIL DARK ROAST COFFEE",
-                    "₱729",
+                    "729",
                     "Our OG coffee is a dream, if your dream is of chocolatey nuttiness with beans roasted to the edge of awesome. Go deep, go rich and commit with the darkest coffee you can put in your cup. Responsibly sourced. Organic beans. Just good.",
                     "coffee")
               ),
@@ -123,14 +121,14 @@ class _HomePage extends State<HomePage> {
               //-------<product>----
               Product(
                 productName: "TWILIGHT MEDIUM ROAST COFFEE",
-                price: "₱729",
+                price: "729",
                 caption: "Coffee so good",
                 photo: "coffee",
                 bgColor: "0xff0076D5",
                 desc: "Our OG coffee is a dream, if your dream is of chocolatey nuttiness with beans roasted to the edge of awesome. Go deep, go rich and commit with the darkest coffee you can put in your cup. Responsibly sourced. Organic beans. Just good.",
                 onTap: () => navigateToOrderPage(
                     "TWILIGHT MEDIUM ROAST COFFEE",
-                    "₱729",
+                    "729",
                     "Our OG coffee is a dream, if your dream is of chocolatey nuttiness with beans roasted to the edge of awesome. Go deep, go rich and commit with the darkest coffee you can put in your cup. Responsibly sourced. Organic beans. Just good.",
                     "coffee")
               ),
@@ -139,14 +137,14 @@ class _HomePage extends State<HomePage> {
               //-------<product>----
               Product(
                 productName: "DOUBLE CHOC HOT COCOA",
-                price: "₱649",
+                price: "649",
                 caption: "Chocolate wow",
                 photo: "choco",
                 bgColor: "0xffE93AB8",
-                desc: "Indulge in the rich, velvety taste of our Double Chocolate Hot Cocoa. Crafted with premium cocoa and a decadent blend of creamy milk chocolate, this indulgent drink is perfect for those who crave extra chocolatey goodness in every sip. Simply mix with hot water or milk for a luxurious treat that's sure to warm you up on even the coldest days. Whether you’re cozying up at home or sharing with friends, our Double Chocolate Hot Cocoa brings comfort and sweetness in every cup. Ideal for chocolate lovers of all ages!",
+                desc: "Indulge in the rich, velvety taste of o5ur Double Chocolate Hot Cocoa. Crafted with premium cocoa and a decadent blend of creamy milk chocolate, this indulgent drink is perfect for those who crave extra chocolatey goodness in every sip. Simply mix with hot water or milk for a luxurious treat that's sure to warm you up on even the coldest days. Whether you’re cozying up at home or sharing with friends, our Double Chocolate Hot Cocoa brings comfort and sweetness in every cup. Ideal for chocolate lovers of all ages!",
                 onTap: () => navigateToOrderPage(
                     "DOUBLE CHOC HOT COCOA",
-                    "₱649",
+                    "649",
                     "Indulge in the rich, velvety taste of our Double Chocolate Hot Cocoa. Crafted with premium cocoa and a decadent blend of creamy milk chocolate, this indulgent drink is perfect for those who crave extra chocolatey goodness in every sip. Simply mix with hot water or milk for a luxurious treat that's sure to warm you up on even the coldest days. Whether you’re cozying up at home or sharing with friends, our Double Chocolate Hot Cocoa brings comfort and sweetness in every cup. Ideal for chocolate lovers of all ages!",
                     "choco")
               ),
@@ -155,14 +153,14 @@ class _HomePage extends State<HomePage> {
               //-------<product>----
               Product(
                 productName: "HIBISCUS GREEN TEA",
-                price: "₱649",
+                price: "649",
                 caption: "This is tea",
                 photo: "tea",
                 bgColor: "0xffFAAC76",
                 desc: "Experience the perfect balance of vibrant flavor and wellness with our Hibiscus Green Tea. This refreshing blend combines the tartness of hibiscus petals with the delicate taste of green tea, creating a fragrant and invigorating brew. Packed with antioxidants and natural goodness, it's a perfect choice for boosting your health while enjoying a soothing cup. Whether hot or iced, Hibiscus Green Tea offers a revitalizing, slightly tangy drink that’s both delicious and refreshing. Ideal for those seeking a natural, flavorful way to relax and refresh!",
                 onTap: () => navigateToOrderPage(
                     "HIBISCUS GREEN TEA",
-                    "₱649",
+                    "649",
                     "Experience the perfect balance of vibrant flavor and wellness with our Hibiscus Green Tea. This refreshing blend combines the tartness of hibiscus petals with the delicate taste of green tea, creating a fragrant and invigorating brew. Packed with antioxidants and natural goodness, it's a perfect choice for boosting your health while enjoying a soothing cup. Whether hot or iced, Hibiscus Green Tea offers a revitalizing, slightly tangy drink that’s both delicious and refreshing. Ideal for those seeking a natural, flavorful way to relax and refresh!",
                     "tea")
               ),
@@ -246,7 +244,7 @@ class Product extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  price,
+                  "₱$price",
                   style: const TextStyle(color: Colors.black, fontSize: 18, fontFamily: "Jaro"),
                 ),
                 Text(
